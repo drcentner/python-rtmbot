@@ -4,6 +4,8 @@ python-rtmbot
 [![Build Status](https://travis-ci.org/slackhq/python-rtmbot.png)](https://travis-ci.org/slackhq/python-rtmbot)
 [![Coverage Status](https://coveralls.io/repos/github/slackhq/python-rtmbot/badge.svg?branch=master)](https://coveralls.io/github/slackhq/python-rtmbot?branch=master)
 
+NOTE: The Build/Coverage Status indicators reference the upstream repo, not this particular fork.
+
 A Slack bot written in python that connects via the RTM API.
 
 Python-rtmbot is a callback based bot engine. The plugins architecture should be familiar to anyone with knowledge to the [Slack API](https://api.slack.com) and Python. The configuration file format is YAML.
@@ -25,7 +27,7 @@ Installation
 
 1. Download the python-rtmbot code
 
-        git clone https://github.com/slackhq/python-rtmbot.git
+        git clone https://github.com/drcentner/python-rtmbot.git
         cd python-rtmbot
 
 2. Install dependencies ([virtualenv](http://virtualenv.readthedocs.org/en/latest/) is recommended.)
