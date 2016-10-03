@@ -1,0 +1,13 @@
+[Unit]
+Description=Slack RTM Bot
+
+[Service]
+Type=Simple
+User=root
+WorkingDirectory=/opt/rtmbot/
+ExecStart=/opt/rtmbot/rtmbot.py
+#Environment="HTTP_PROXY=http://your.proxy.server:3128"
+#Environment="HTTPS_PROXY=http://your.proxy.server:3128"
+
+[Install]
+WantedBy=multi-user.target
