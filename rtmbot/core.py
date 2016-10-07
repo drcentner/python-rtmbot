@@ -17,6 +17,8 @@ class RtmBot(object):
             Params:
                 - config (dict):
                     - SLACK_TOKEN: your authentication token from Slack
+                    - SLACK_CONNECT_RETRIES (optional: defaults to 0) The number of times
+                        the bot will attempt to connect on startup
                     - BASE_PATH (optional: defaults to execution directory) RtmBot will
                         look in this directory for plugins.
                     - LOGFILE (optional: defaults to rtmbot.log) The filename for logs, will
@@ -29,6 +31,9 @@ class RtmBot(object):
 
         # set slack token
         self.token = config.get('SLACK_TOKEN')
+
+        # set quantity of times to attempt to connect to slack
+        self.retries = config.get('SLACK_CONNECT_RETRIES', 0)
 
         # set working directory for loading plugins or other files
         working_directory = os.path.abspath(os.path.dirname(sys.argv[0]))
@@ -55,8 +60,13 @@ class RtmBot(object):
             logging.info(debug_string)
 
     def connect(self):
-        """Convenience method that creates Server instance"""
-        self.slack_client.rtm_connect()
+        connected = False
+        connection_attempts = 0
+
+        while not connected and connection_attempts <= self.retries:
+            """Convenience method that creates Server instance"""
+            connected = self.slack_client.rtm_connect()
+            connection_attempts = connection_attempts + 1
 
     def _start(self):
         self.connect()
